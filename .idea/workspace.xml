@@ -1,11 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="452fefb1-ba23-4dd3-934b-43f6578ff336" name="Changes" comment="" />
+    <list default="true" id="452fefb1-ba23-4dd3-934b-43f6578ff336" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Images/blue0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/blue1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/blue2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/blue3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/blue4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/blue5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/blue6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/blue7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/blue8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/blue9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/bluePlus2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/blueReverse.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/blueSkip.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/green0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/green1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/green2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/green3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/green4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/green5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/green6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/green7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/green8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/green9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/greenPlu2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/greenReverse.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/greenSkip.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/red0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/red1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/red2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/red3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/red4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/red5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/red6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/red7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/red8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/red9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/redPlus2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/redReverse.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/redSkip.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/wildChange.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/wildPlus4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/yellow0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/yellow1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/yellow2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/yellow3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/yellow4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/yellow5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/yellow6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/yellow7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/yellow8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/yellow9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/yellowPlus2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/yellowReverse.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/yellowSkip.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DeckOfCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeckOfCards.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -14,7 +83,9 @@
   "associatedIndex": 3
 }]]></component>
   <component name="ProjectId" id="2dHH4kEAft7Cyrg2bdwjysM0ozk" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -23,9 +94,17 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "main",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Images" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
