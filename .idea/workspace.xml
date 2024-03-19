@@ -4,38 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="452fefb1-ba23-4dd3-934b-43f6578ff336" name="Changes" comment="added images">
-      <change afterPath="$PROJECT_DIR$/Images/greenPlus2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Computer.java" afterDir="false" />
+    <list default="true" id="452fefb1-ba23-4dd3-934b-43f6578ff336" name="Changes" comment="can draw card now">
+      <change afterPath="$PROJECT_DIR$/Images/blank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Round.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/green0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/green0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/green1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/green1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/green2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/green2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/green3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/green3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/green4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/green4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/green5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/green5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/green6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/green6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/green7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/green7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/green8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/green8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/green9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/green9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/greenPlu2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/greenReverse.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/greenReverse.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/greenSkip.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/greenSkip.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/red0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/red0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/red1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/red1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/red2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/red2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/red3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/red3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/red4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/red4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/red5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/red5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/red6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/red6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/red7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/red7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/red8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/red8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/red9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/red9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/redPlus2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/redPlus2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/redReverse.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/redReverse.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/redSkip.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/redSkip.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/wildChange.png" beforeDir="false" afterPath="$PROJECT_DIR$/Images/wild.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DeckOfCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeckOfCards.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,11 +72,20 @@
       <option name="project" value="LOCAL" />
       <updated>1709659490638</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="can draw card now">
+      <option name="closed" value="true" />
+      <created>1710431045154</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1710431045154</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added images" />
-    <option name="LAST_COMMIT_MESSAGE" value="added images" />
+    <MESSAGE value="can draw card now" />
+    <option name="LAST_COMMIT_MESSAGE" value="can draw card now" />
   </component>
 </project>
