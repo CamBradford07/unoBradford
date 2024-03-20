@@ -156,6 +156,7 @@ public class Main {
                 Card lastCard = round.getLastCard();
                 String color = lastCard.getColor();
                 int number = lastCard.getNumber();
+              
             }
         });
 
