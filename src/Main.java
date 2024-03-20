@@ -11,9 +11,12 @@ public class Main {
         frame.setSize(500,500);
         JFrame frame2 = new JFrame("UNO");
         frame2.setSize(500,500);
+        JFrame optionFrame = new JFrame("Options");
+        optionFrame.setSize(500,500);
 
         JPanel playerShowDeck = new JPanel();
         JPanel panel = new JPanel();
+        JPanel optionPanel = new JPanel();
 
         ImageIcon red0Icon = new ImageIcon("Images/red0.png");
         ImageIcon red1Icon = new ImageIcon("Images/red1.png");
@@ -144,8 +147,12 @@ public class Main {
                 for(Component x: playerShowDeck.getComponents()){
                     playerShowDeck.remove(x);
                 }
+                for(Component x: optionPanel.getComponents()){
+                    optionPanel.remove(x);
+                }
                 //frame.remove(0);
                 frame2.setVisible(false);
+                optionFrame.setVisible(false);
                 frame.setVisible(true);
             }
         });
@@ -156,7 +163,26 @@ public class Main {
                 Card lastCard = round.getLastCard();
                 String color = lastCard.getColor();
                 int number = lastCard.getNumber();
-              
+                ArrayList<Card> allCards = play.getDeck();
+                ArrayList<Card> possibleCards = new ArrayList<Card>();
+                for(int i = 0; i < allCards.size(); i++){
+                    if(allCards.get(i).getColor().equalsIgnoreCase(color)){
+                        possibleCards.add(allCards.remove(i));
+                        i--;
+                    }
+                    else if(allCards.get(i).getNumber() == number){
+                        possibleCards.add(allCards.remove(i));
+                        i--;
+                    }
+                }
+                optionPanel.add(returnToGame);
+                for(Card x: possibleCards){
+                    optionPanel.add(new JLabel(x.getIcon()));
+                }
+                optionFrame.add(optionPanel);
+                frame.setVisible(false);
+                optionFrame.setVisible(true);
+
             }
         });
 
