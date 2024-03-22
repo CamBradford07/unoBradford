@@ -154,5 +154,4 @@ public void shuffle(){
     }
  deck = newDeck;
 }
-
 }

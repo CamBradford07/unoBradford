@@ -12,9 +12,13 @@ public class Computer {
         return name;
     }
 
+    public void addCard(Card newCard){
+        personalDeck.add(newCard);
+    }
 
-
-
+public int getCardCount(){
+        return personalDeck.size();
+}
 
 
 }

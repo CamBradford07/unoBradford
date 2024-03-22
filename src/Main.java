@@ -8,14 +8,14 @@ public class Main {
     public static void main(String[] args) {
 
         JFrame frame = new JFrame("UNO");
-        frame.setSize(500,500);
+        frame.setSize(1500,750);
         JFrame frame2 = new JFrame("UNO");
         frame2.setSize(500,500);
         JFrame optionFrame = new JFrame("Options");
         optionFrame.setSize(500,500);
 
         JPanel playerShowDeck = new JPanel();
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel(new GridLayout(12,10));
         JPanel optionPanel = new JPanel();
 
         ImageIcon red0Icon = new ImageIcon("Images/red0.png");
@@ -78,6 +78,7 @@ public class Main {
         ImageIcon[] blues = {blue0Icon, blue1Icon ,blue2Icon, blue3Icon, blue4Icon, blue5Icon, blue6Icon, blue7Icon, blue8Icon, blue9Icon, blueSkipIcon, blueReverseIcon, bluePlus2Icon};
         ImageIcon[] greens = {green0Icon, green1Icon ,green2Icon, green3Icon, green4Icon, green5Icon, green6Icon, green7Icon, green8Icon, green9Icon, greenSkipIcon, greenReverseIcon, greenPlus2Icon};
         ImageIcon[] reds = {red0Icon, red1Icon ,red2Icon, red3Icon, red4Icon, red5Icon, red6Icon, red7Icon, red8Icon, red9Icon, redSkipIcon, redReverseIcon, redPlus2Icon};
+        ImageIcon unoIcon = new ImageIcon("Images/uno.png");
 
         for(ImageIcon x: yellows){
             x.setImage(x.getImage().getScaledInstance(80, 110, Image.SCALE_DEFAULT));
@@ -93,6 +94,7 @@ public class Main {
         }
         wildIcon.setImage(wildIcon.getImage().getScaledInstance(80, 110, Image.SCALE_DEFAULT));
         wildPlus4Icon.setImage(wildPlus4Icon.getImage().getScaledInstance(80, 110, Image.SCALE_DEFAULT));
+        unoIcon.setImage(unoIcon.getImage().getScaledInstance(80, 110, Image.SCALE_DEFAULT));
 
         DeckOfCards gameCards = new DeckOfCards(reds, blues, yellows, greens, wildIcon, wildPlus4Icon);
         gameCards.shuffle();
@@ -101,16 +103,109 @@ public class Main {
         Computer comp2 = new Computer("Alex");
         Computer comp3 = new Computer("Cam");
 
-        Player play = new Player("ricky");
+        Player play = new Player("Player");
 
         Round round = new Round(new Card(0,"blank",blankIcon));
 
         JButton showDeck = new JButton("see deck");
         JButton draw = new JButton("Draw card");
-        JButton seeOptions = new JButton("See options");
         JLabel label = new JLabel();
 
         JButton returnToGame = new JButton("return to game");
+
+        Card firstCard = gameCards.drawCard();
+        round.setLastCard(firstCard);
+        label.setIcon(round.getLastCard().getIcon());
+
+        JButton red0 = new JButton(red0Icon);
+        JButton red1 = new JButton(red1Icon);
+        JButton red2 = new JButton(red2Icon);
+        JButton red3 = new JButton(red3Icon);
+        JButton red4 = new JButton(red4Icon);
+        JButton red5 = new JButton(red5Icon);
+        JButton red6 = new JButton(red6Icon);
+        JButton red7 = new JButton(red7Icon);
+        JButton red8 = new JButton(red8Icon);
+        JButton red9 = new JButton(red9Icon);
+        JButton redSkip = new JButton(redSkipIcon);
+        JButton redReverse = new JButton(redReverseIcon);
+        JButton redPlus2 = new JButton(redPlus2Icon);
+
+        JButton yellow0 = new JButton(yellow0Icon);
+        JButton yellow1 = new JButton(yellow1Icon);
+        JButton yellow2 = new JButton(yellow2Icon);
+        JButton yellow3 = new JButton(yellow3Icon);
+        JButton yellow4 = new JButton(yellow4Icon);
+        JButton yellow5 = new JButton(yellow5Icon);
+        JButton yellow6 = new JButton(yellow6Icon);
+        JButton yellow7 = new JButton(yellow7Icon);
+        JButton yellow8 = new JButton(yellow8Icon);
+        JButton yellow9 = new JButton(yellow9Icon);
+        JButton yellowSkip = new JButton(yellowSkipIcon);
+        JButton yellowReverse = new JButton(yellowReverseIcon);
+        JButton yellowPlus2 = new JButton(yellowPlus2Icon);
+
+        JButton blue0 = new JButton(blue0Icon);
+        JButton blue1 = new JButton(blue1Icon);
+        JButton blue2 = new JButton(blue2Icon);
+        JButton blue3 = new JButton(blue3Icon);
+        JButton blue4 = new JButton(blue4Icon);
+        JButton blue5 = new JButton(blue5Icon);
+        JButton blue6 = new JButton(blue6Icon);
+        JButton blue7 = new JButton(blue7Icon);
+        JButton blue8 = new JButton(blue8Icon);
+        JButton blue9 = new JButton(blue9Icon);
+        JButton blueSkip = new JButton(blueSkipIcon);
+        JButton blueReverse = new JButton(blueReverseIcon);
+        JButton bluePlus2 = new JButton(bluePlus2Icon);
+
+        JButton green0 = new JButton(green0Icon);
+        JButton green1 = new JButton(green1Icon);
+        JButton green2 = new JButton(green2Icon);
+        JButton green3 = new JButton(green3Icon);
+        JButton green4 = new JButton(green4Icon);
+        JButton green5 = new JButton(green5Icon);
+        JButton green6 = new JButton(green6Icon);
+        JButton green7 = new JButton(green7Icon);
+        JButton green8 = new JButton(green8Icon);
+        JButton green9 = new JButton(green9Icon);
+        JButton greenSkip = new JButton(greenSkipIcon);
+        JButton greenReverse = new JButton(greenReverseIcon);
+        JButton greenPlus2 = new JButton(greenPlus2Icon);
+
+        JButton wild = new JButton(wildIcon);
+        JButton wildPlus4 = new JButton(wildPlus4Icon);
+
+        JLabel playName = new JLabel(play.getName());
+        JLabel comp1Name = new JLabel(comp1.getName());
+        JLabel comp2Name = new JLabel(comp2.getName());
+        JLabel comp3Name = new JLabel(comp3.getName());
+
+        JLabel playCardCount = new JLabel("Cards: ");
+        JLabel comp1CardCount = new JLabel("Cards: ");
+        JLabel comp2CardCount = new JLabel("Cards: ");
+        JLabel comp3CardCount = new JLabel("Cards: ");
+
+        for(int i = 0; i < 7; i++){
+            play.addCard(gameCards.drawCard());
+        }
+        for(int i = 0; i < 7; i++){
+            comp1.addCard(gameCards.drawCard());
+        }
+        for(int i = 0; i < 7; i++){
+            comp2.addCard(gameCards.drawCard());
+        }
+        for(int i = 0; i < 7; i++){
+            comp3.addCard(gameCards.drawCard());
+        }
+
+        playCardCount.setText("Cards: " + play.getCardCount());
+        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+        comp2CardCount.setText("Cards: " + comp2.getCardCount());
+        comp3CardCount.setText("Cards: " + comp3.getCardCount());
+        int lastCardNumber = round.getLastCard().getNumber();
+        String lastCardColor = round.getLastCard().getColor();
+
 
         draw.addActionListener(new ActionListener() {
             @Override
@@ -143,7 +238,7 @@ public class Main {
         returnToGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.setSize(500,500);
+                frame.setSize(1500,750);
                 for(Component x: playerShowDeck.getComponents()){
                     playerShowDeck.remove(x);
                 }
@@ -157,39 +252,80 @@ public class Main {
             }
         });
 
-        seeOptions.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Card lastCard = round.getLastCard();
-                String color = lastCard.getColor();
-                int number = lastCard.getNumber();
-                ArrayList<Card> allCards = play.getDeck();
-                ArrayList<Card> possibleCards = new ArrayList<Card>();
-                for(int i = 0; i < allCards.size(); i++){
-                    if(allCards.get(i).getColor().equalsIgnoreCase(color)){
-                        possibleCards.add(allCards.remove(i));
-                        i--;
-                    }
-                    else if(allCards.get(i).getNumber() == number){
-                        possibleCards.add(allCards.remove(i));
-                        i--;
-                    }
-                }
-                optionPanel.add(returnToGame);
-                for(Card x: possibleCards){
-                    optionPanel.add(new JLabel(x.getIcon()));
-                }
-                optionFrame.add(optionPanel);
-                frame.setVisible(false);
-                optionFrame.setVisible(true);
 
-            }
-        });
+        JButton[] skips = {redSkip, yellowSkip, blueSkip, greenSkip};
+        JButton[] plus2 = {redPlus2, yellowPlus2, bluePlus2, greenPlus2};
+        JButton[] reverses = {greenReverse, blueReverse, yellowReverse, redReverse};
+        JButton[] redNums = {red0, red1, red2, red3, red4, red5, red6, red7, red8, red9};
+        JButton[] yellowNums = {yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9};
+        JButton[] blueNums = {blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9};
+        JButton[] greenNums = {green0, green1, green2, green3, green4, green5, green6, green7, green8, green9};
 
+
+        panel.add(playName);
+        panel.add(new JLabel(blankIcon));
+        panel.add(new JLabel(blankIcon));
+        panel.add(comp1Name);
+        panel.add(new JLabel(blankIcon));
+        panel.add(new JLabel(blankIcon));
+        panel.add(comp2Name);
+        panel.add(new JLabel(blankIcon));
+        panel.add(new JLabel(blankIcon));
+        panel.add(comp3Name);
+        panel.add(playCardCount);
+        panel.add(new JLabel(blankIcon));
+        panel.add(new JLabel(blankIcon));
+        panel.add(comp1CardCount);
+        panel.add(new JLabel(blankIcon));
+        panel.add(new JLabel(blankIcon));
+        panel.add(comp2CardCount);
+        panel.add(new JLabel(blankIcon));
+        panel.add(new JLabel(blankIcon));
+        panel.add(comp3CardCount);
+        for(int i = 0; i < 10; i++){
+            panel.add(new JLabel(blankIcon));
+        }
+        for(int i = 0; i < 4; i++){
+            panel.add(new JLabel(blankIcon));
+        }
         panel.add(label);
+        panel.add(new JLabel(unoIcon));
+        for(int i = 0; i < 4; i++){
+            panel.add(new JLabel(blankIcon));
+        }
+        for(int i = 0; i < 20; i++){
+            panel.add(new JLabel(blankIcon));
+        }
+        for(JButton button: plus2){
+            panel.add(button);
+        }
+        for(int i = 0; i < 3; i++){
+            panel.add(new JLabel(blankIcon));
+        }
         panel.add(draw);
         panel.add(showDeck);
-        panel.add(seeOptions);
+        panel.add(new JLabel(blankIcon));
+        for(JButton button: skips){
+            panel.add(button);
+        }
+        panel.add(wild);
+        panel.add(wildPlus4);
+        for(JButton button: reverses){
+            panel.add(button);
+        }
+        for(JButton button: redNums){
+            panel.add(button);
+        }
+        for(JButton button: yellowNums){
+            panel.add(button);
+        }
+        for(JButton button: blueNums){
+            panel.add(button);
+        }
+        for(JButton button: greenNums){
+            panel.add(button);
+        }
+
         frame.add(panel);
         frame.setVisible(true);
     }
