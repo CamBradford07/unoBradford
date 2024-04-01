@@ -27,13 +27,5 @@ public class Player {
         return deck.size();
     }
 
-    public boolean checkForCard(int num, String color){
-        for(Card x: deck){
-            if(x.getColor().equalsIgnoreCase(color) && x.getNumber() == num){
-                return true;
-            }
-        }
-        return false;
-    }
 
 }

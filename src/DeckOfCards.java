@@ -83,7 +83,7 @@ public int getSize(){
         return deck.size();
 }
 
-public void reset(ImageIcon[] reds, ImageIcon[] blue, ImageIcon[] yellows, ImageIcon[] greens){
+public void reset(ImageIcon[] reds, ImageIcon[] blue, ImageIcon[] yellows, ImageIcon[] greens, ImageIcon wild, ImageIcon wildPlus4){
     deck = new ArrayList<Card>();
     for(int i = 0; i <= 9; i++){
         deck.add(new Card(i, "green", greens[i]));
@@ -146,6 +146,10 @@ public void reset(ImageIcon[] reds, ImageIcon[] blue, ImageIcon[] yellows, Image
     deck.add(new Card(-1, "yellow", yellows[11]));
     deck.add(new Card(10, "yellow", yellows[12]));
     deck.add(new Card(10, "yellow", yellows[12]));
+    for(int i = 0; i < 4; i++){
+        deck.add(new Card(11, "wild", wild));
+        deck.add(new Card(12, "wild", wildPlus4));
+    }
 }
 public void shuffle(){
         ArrayList<Card> newDeck = new ArrayList<Card>();

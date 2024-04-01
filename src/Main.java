@@ -215,7 +215,7 @@ public class Main {
                 play.addCard(drawnCard);
                 round.setLastCard(drawnCard);
                 if(gameCards.getSize() == 0){
-                    gameCards.reset(reds, blues, yellows, greens);
+                    gameCards.reset(reds, blues, yellows, greens, wildIcon, wildPlus4Icon);
                     gameCards.shuffle();
                 }
             }
@@ -261,6 +261,11 @@ public class Main {
         JButton[] blueNums = {blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9};
         JButton[] greenNums = {green0, green1, green2, green3, green4, green5, green6, green7, green8, green9};
 
+        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2};
+        boolean[] options = round.checkOptions(play.getDeck());
+        for(int i = 0; i < allButtons.length; i++){
+            allButtons[i].setVisible(options[i]);
+        }
 
         panel.add(playName);
         panel.add(new JLabel(blankIcon));
