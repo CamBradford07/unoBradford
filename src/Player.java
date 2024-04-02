@@ -27,5 +27,19 @@ public class Player {
         return deck.size();
     }
 
+    public int findCardIndex(String color, int num){
+        int index = -1;
+        for(int i = 0; i < deck.size(); i++){
+            if(deck.get(i).getColor().equalsIgnoreCase(color) && deck.get(i).getNumber() == num){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
+    public Card playCard(int index){
+       return deck.remove(index);
+    }
 
 }
