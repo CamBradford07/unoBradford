@@ -176,6 +176,20 @@ public class Main {
         JButton wild = new JButton(wildIcon);
         JButton wildPlus4 = new JButton(wildPlus4Icon);
 
+        JButton redPick = new JButton("RED");
+        redPick.setBackground(Color.RED);
+        JButton yellowPick = new JButton("YELLOW");
+        yellowPick.setBackground(Color.YELLOW);
+        JButton bluePick = new JButton("BLUE");
+        bluePick.setBackground(Color.CYAN);
+        JButton greenPick = new JButton("GREEN");
+        greenPick.setBackground(Color.GREEN);
+
+        redPick.setVisible(false);
+        yellowPick.setVisible(false);
+        greenPick.setVisible(false);
+        bluePick.setVisible(false);
+
         JLabel playName = new JLabel(play.getName());
         JLabel comp1Name = new JLabel(comp1.getName());
         JLabel comp2Name = new JLabel(comp2.getName());
@@ -203,9 +217,6 @@ public class Main {
         comp1CardCount.setText("Cards: " + comp1.getCardCount());
         comp2CardCount.setText("Cards: " + comp2.getCardCount());
         comp3CardCount.setText("Cards: " + comp3.getCardCount());
-        int lastCardNumber = round.getLastCard().getNumber();
-        String lastCardColor = round.getLastCard().getColor();
-
 
         draw.addActionListener(new ActionListener() {
             @Override
@@ -262,6 +273,7 @@ public class Main {
                 round.setLastCard(playedCard);
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
+                round.setIsWild(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
                 boolean[] options = round.checkOptions(play.getDeck());
                 for(int i = 0; i < allButtons.length; i++){
@@ -277,6 +289,7 @@ public class Main {
                 round.setLastCard(playedCard);
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
+                round.setIsWild(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
                 boolean[] options = round.checkOptions(play.getDeck());
                 for(int i = 0; i < allButtons.length; i++){
@@ -292,6 +305,7 @@ public class Main {
                 round.setLastCard(playedCard);
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
+                round.setIsWild(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
                 boolean[] options = round.checkOptions(play.getDeck());
                 for(int i = 0; i < allButtons.length; i++){
@@ -307,6 +321,7 @@ public class Main {
                 round.setLastCard(playedCard);
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
+                round.setIsWild(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
                 boolean[] options = round.checkOptions(play.getDeck());
                 for(int i = 0; i < allButtons.length; i++){
@@ -322,6 +337,7 @@ public class Main {
                 round.setLastCard(playedCard);
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
+                round.setIsWild(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
                 boolean[] options = round.checkOptions(play.getDeck());
                 for(int i = 0; i < allButtons.length; i++){
@@ -337,6 +353,7 @@ public class Main {
                 round.setLastCard(playedCard);
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
+                round.setIsWild(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
                 boolean[] options = round.checkOptions(play.getDeck());
                 for(int i = 0; i < allButtons.length; i++){
@@ -352,6 +369,7 @@ public class Main {
                 round.setLastCard(playedCard);
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
+                round.setIsWild(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
                 boolean[] options = round.checkOptions(play.getDeck());
                 for(int i = 0; i < allButtons.length; i++){
@@ -367,6 +385,7 @@ public class Main {
                 round.setLastCard(playedCard);
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
+                round.setIsWild(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
                 boolean[] options = round.checkOptions(play.getDeck());
                 for(int i = 0; i < allButtons.length; i++){
@@ -382,6 +401,7 @@ public class Main {
                 round.setLastCard(playedCard);
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
+                round.setIsWild(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
                 boolean[] options = round.checkOptions(play.getDeck());
                 for(int i = 0; i < allButtons.length; i++){
@@ -397,6 +417,7 @@ public class Main {
                 round.setLastCard(playedCard);
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
+                round.setIsWild(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
                 boolean[] options = round.checkOptions(play.getDeck());
                 for(int i = 0; i < allButtons.length; i++){
@@ -412,6 +433,75 @@ public class Main {
                 round.setLastCard(playedCard);
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
+                round.setIsWild(true);
+                redPick.setVisible(true);
+                yellowPick.setVisible(true);
+                greenPick.setVisible(true);
+                bluePick.setVisible(true);
+                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                for(JButton button: allButtons){
+                    button.setVisible(false);
+                }
+            }
+        });
+
+
+        redPick.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                round.setWildColor("red");
+                redPick.setVisible(false);
+                yellowPick.setVisible(false);
+                greenPick.setVisible(false);
+                bluePick.setVisible(false);
+                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                boolean[] options = round.checkOptions(play.getDeck());
+                for(int i = 0; i < allButtons.length; i++){
+                    allButtons[i].setVisible(options[i]);
+                }
+            }
+        });
+
+        yellowPick.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                round.setWildColor("yellow");
+                redPick.setVisible(false);
+                yellowPick.setVisible(false);
+                greenPick.setVisible(false);
+                bluePick.setVisible(false);
+                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                boolean[] options = round.checkOptions(play.getDeck());
+                for(int i = 0; i < allButtons.length; i++){
+                    allButtons[i].setVisible(options[i]);
+                }
+            }
+        });
+
+        greenPick.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                round.setWildColor("green");
+                redPick.setVisible(false);
+                yellowPick.setVisible(false);
+                greenPick.setVisible(false);
+                bluePick.setVisible(false);
+                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                boolean[] options = round.checkOptions(play.getDeck());
+                for(int i = 0; i < allButtons.length; i++){
+                    allButtons[i].setVisible(options[i]);
+                }
+            }
+        });
+
+        bluePick.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                round.setWildColor("blue");
+                redPick.setVisible(false);
+                yellowPick.setVisible(false);
+                greenPick.setVisible(false);
+                bluePick.setVisible(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
                 boolean[] options = round.checkOptions(play.getDeck());
                 for(int i = 0; i < allButtons.length; i++){
@@ -457,14 +547,16 @@ public class Main {
         for(int i = 0; i < 10; i++){
             panel.add(new JLabel(blankIcon));
         }
-        for(int i = 0; i < 4; i++){
-            panel.add(new JLabel(blankIcon));
-        }
+        panel.add(new JLabel(blankIcon));
+        panel.add(redPick);
+        panel.add(yellowPick);
+        panel.add(new JLabel(blankIcon));
         panel.add(label);
         panel.add(new JLabel(unoIcon));
-        for(int i = 0; i < 4; i++){
-            panel.add(new JLabel(blankIcon));
-        }
+        panel.add(new JLabel(blankIcon));
+        panel.add(greenPick);
+        panel.add(bluePick);
+        panel.add(new JLabel(blankIcon));
         for(int i = 0; i < 20; i++){
             panel.add(new JLabel(blankIcon));
         }

@@ -4,7 +4,8 @@ public class Round {
     private Card lastCard;
     private String[] order = {"player", "comp1", "comp2", "comp3"};
     private int place = 0;
-    private String wildColor;
+    private String wildColor = "";
+    private boolean isWild = false;
 
     public Round(Card card){
         lastCard = card;
@@ -14,6 +15,13 @@ public class Round {
         lastCard = newLastCard;
     }
 
+    public void setIsWild(boolean tof){
+        isWild = tof;
+    }
+
+    public void setWildColor(String newColor){
+        wildColor = newColor;
+    }
 
     public Card getLastCard() {
         return lastCard;
@@ -29,7 +37,7 @@ public class Round {
     private boolean checkForCard(ArrayList<Card> deck, String color, int number){
         for(Card x: deck){
             if(x.getColor().equalsIgnoreCase(color) && x.getNumber() == number){
-                if(x.getColor().equalsIgnoreCase(lastCard.getColor()) || x.getNumber() == lastCard.getNumber() || x.getColor().equalsIgnoreCase("wild")) {
+                if((!isWild && (x.getColor().equalsIgnoreCase(lastCard.getColor()) || x.getNumber() == lastCard.getNumber() )) || (isWild && (x.getColor().equalsIgnoreCase(wildColor))) || x.getColor().equalsIgnoreCase("wild")) {
                     return true;
                 }
                 else{
@@ -42,7 +50,7 @@ public class Round {
 
     public boolean[] checkOptions(ArrayList<Card> deck) {
         boolean[] options = new boolean[54];
-        if (!lastCard.getColor().equalsIgnoreCase("wild")) {
+        if (!isWild) {
             for (int i = 0, x = -2; i < 13; i++, x++) {
                 options[i] = checkForCard(deck, "red", x);
             }
@@ -61,7 +69,7 @@ public class Round {
         else{
             if(wildColor.equalsIgnoreCase("red")){
                 for (int i = 0, x = -2; i < 13; i++, x++) {
-                    options[i] = checkForCard(deck, "yellow", x);
+                    options[i] = checkForCard(deck, "red", x);
                 }
                 options[52] = checkForCard(deck, "wild", 11);
                 options[53] = checkForCard(deck, "wild", 12);
