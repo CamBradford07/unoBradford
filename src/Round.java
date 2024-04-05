@@ -6,6 +6,7 @@ public class Round {
     private int place = 0;
     private String wildColor = "";
     private boolean isWild = false;
+    private String winner = "";
 
     public Round(Card card){
         lastCard = card;
@@ -25,6 +26,14 @@ public class Round {
 
     public Card getLastCard() {
         return lastCard;
+    }
+
+    public String getWinner(){
+        return winner;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
     }
 
     public void reverse(){
