@@ -109,5 +109,16 @@ public class Round {
         return options;
     }
 
+    public int getCardNumber(int index) {
+        if (!(index > 51)) {
+            while (index >= 13) {
+                index -= 13;
+            }
+            return index - 2;
+        }
+        else{
+            return index - 41;
+        }
+    }
 
 }

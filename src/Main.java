@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main {
     public static void main(String[] args) {
@@ -117,6 +119,9 @@ public class Main {
         JButton returnToGame = new JButton("return to game");
 
         Card firstCard = gameCards.drawCard();
+        while(firstCard.getColor().equalsIgnoreCase("wild")){
+            firstCard = gameCards.drawCard();
+        }
         round.setLastCard(firstCard);
         label.setIcon(round.getLastCard().getIcon());
 
@@ -223,6 +228,8 @@ public class Main {
         comp2CardCount.setText("Cards: " + comp2.getCardCount());
         comp3CardCount.setText("Cards: " + comp3.getCardCount());
 
+        Timer timer = new Timer();
+
         draw.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -279,19 +286,47 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
+
             }
         });
 
@@ -303,19 +338,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -327,19 +389,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -351,19 +440,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -375,19 +491,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -399,19 +542,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -423,19 +593,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -447,19 +644,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -471,19 +695,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -495,19 +746,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -519,19 +797,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -543,19 +848,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -567,19 +899,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -591,19 +950,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -615,19 +1001,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -639,19 +1052,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -663,19 +1103,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -687,19 +1154,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -711,19 +1205,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -735,19 +1256,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -759,19 +1307,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -783,19 +1358,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -807,19 +1409,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -831,19 +1460,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -855,19 +1511,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -879,19 +1562,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -903,19 +1613,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -927,19 +1664,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -951,19 +1715,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -975,19 +1766,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -999,19 +1817,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1023,19 +1868,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1047,19 +1919,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1071,19 +1970,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1095,19 +2021,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1119,19 +2072,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1143,19 +2123,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1167,19 +2174,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1191,19 +2225,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1215,19 +2276,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1239,19 +2327,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1263,19 +2378,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1287,19 +2429,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1311,19 +2480,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1336,18 +2532,45 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
+
             }
         });
 
@@ -1359,19 +2582,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1383,19 +2633,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1407,19 +2684,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1431,19 +2735,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1455,19 +2786,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1476,22 +2834,46 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 Card playedCard = play.playCard(play.findCardIndex("blue", -1));
                 round.setLastCard(playedCard);
-                playCardCount.setText("Cards: " + play.getCardCount());
-                label.setIcon(playedCard.getIcon());
-                round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1503,19 +2885,46 @@ public class Main {
                 playCardCount.setText("Cards: " + play.getCardCount());
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
+
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
-                    winnerLabel.setText("Winner: " + round.getWinner());
-                    winnerPanel.add(winnerLabel);
-                    winnerFrame.add(winnerPanel);
-                    frame.setVisible(false);
-                    winnerFrame.setVisible(true);
-                }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1535,14 +2944,17 @@ public class Main {
                 for(JButton button: allButtons){
                     button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
+                if(play.getCardCount() == 0){
+                    round.setWinner(play.getName());
+                    winnerPanel.setBackground(Color.GREEN);
+                    winnerFrame.setBackground(Color.GREEN);
                     winnerLabel.setText("Winner: " + round.getWinner());
                     winnerPanel.add(winnerLabel);
                     winnerFrame.add(winnerPanel);
                     frame.setVisible(false);
                     winnerFrame.setVisible(true);
                 }
+
             }
         });
 
@@ -1562,14 +2974,17 @@ public class Main {
                 for(JButton button: allButtons){
                     button.setVisible(false);
                 }
-                if(play.getCardCount() == 0){round.setWinner("player");}
-                if(!round.getWinner().equalsIgnoreCase("")){
+                if(play.getCardCount() == 0){
+                    round.setWinner(play.getName());
+                    winnerPanel.setBackground(Color.GREEN);
+                    winnerFrame.setBackground(Color.GREEN);
                     winnerLabel.setText("Winner: " + round.getWinner());
                     winnerPanel.add(winnerLabel);
                     winnerFrame.add(winnerPanel);
                     frame.setVisible(false);
                     winnerFrame.setVisible(true);
                 }
+
             }
         });
 
@@ -1582,10 +2997,44 @@ public class Main {
                 greenPick.setVisible(false);
                 bluePick.setVisible(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1598,10 +3047,44 @@ public class Main {
                 greenPick.setVisible(false);
                 bluePick.setVisible(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1614,10 +3097,44 @@ public class Main {
                 greenPick.setVisible(false);
                 bluePick.setVisible(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
@@ -1630,10 +3147,44 @@ public class Main {
                 greenPick.setVisible(false);
                 bluePick.setVisible(false);
                 JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                boolean[] options = round.checkOptions(play.getDeck());
-                for(int i = 0; i < allButtons.length; i++){
-                    allButtons[i].setVisible(options[i]);
+                for(JButton button: allButtons){
+                    button.setVisible(false);
                 }
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        round.setLastCard(comp1.randomTurn(round,gameCards));
+                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                        label.setIcon(round.getLastCard().getIcon());
+
+
+                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
+                        boolean[] options = round.checkOptions(play.getDeck());
+                        for(int i = 0; i < allButtons.length; i++){
+                            allButtons[i].setVisible(options[i]);
+                        }
+                        if(play.getCardCount() == 0){
+                            round.setWinner(play.getName());
+                            winnerPanel.setBackground(Color.GREEN);
+                            winnerFrame.setBackground(Color.GREEN);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                        if(comp1.checkIsWinner()){
+                            round.setWinner(comp1.getName());
+                            winnerPanel.setBackground(Color.RED);
+                            winnerFrame.setBackground(Color.RED);
+                            winnerLabel.setText("Winner: " + round.getWinner());
+                            winnerPanel.add(winnerLabel);
+                            winnerFrame.add(winnerPanel);
+                            frame.setVisible(false);
+                            winnerFrame.setVisible(true);
+                        }
+                    }
+                }, 1500);
             }
         });
 
