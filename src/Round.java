@@ -2,11 +2,12 @@ import java.util.ArrayList;
 
 public class Round {
     private Card lastCard;
-    private String[] order = {"player", "comp1", "comp2", "comp3"};
     private int place = 0;
+    private int direction = 1;
     private String wildColor = "";
     private boolean isWild = false;
     private String winner = "";
+    private long delay = 1000;
 
     public Round(Card card){
         lastCard = card;
@@ -14,6 +15,18 @@ public class Round {
 
     public void setLastCard(Card newLastCard){
         lastCard = newLastCard;
+    }
+
+    public long getDelay() {
+        return delay;
+    }
+
+    public void resetDelay(){
+        delay = 1000;
+    }
+
+    public void increaseDelay(){
+        delay += 1000;
     }
 
     public void setIsWild(boolean tof){
@@ -37,10 +50,32 @@ public class Round {
     }
 
     public void reverse(){
-        String[] newOrder = new String[order.length];
-        for(int i = 0; i < newOrder.length; i++){
-            newOrder[i] = order[order.length - 1 - i];
+        direction *= -1;
+    }
+
+    public int getNextIndex(){
+        int nextIndex = place + direction;
+        if(nextIndex > 3 || nextIndex < 0){
+            if(direction < 0){nextIndex = 3;}
+            else{nextIndex = 0;}
         }
+        return nextIndex;
+    }
+
+    public void nextPlace(){
+        place += direction;
+        if(place > 3 || place < 0){
+            if(direction < 0){
+                place = 3;
+            }
+            else{
+                place = 0;
+            }
+        }
+    }
+
+    public int getPlace(){
+        return place;
     }
 
     private boolean checkForCard(ArrayList<Card> deck, String color, int number){
@@ -118,6 +153,45 @@ public class Round {
         }
         else{
             return index - 41;
+        }
+    }
+
+    public void plus2(Player play, Computer comp1, Computer comp2, Computer comp3, DeckOfCards deck){
+        if(direction > 0){
+            if(place == 0){
+                comp1.addCard(deck.drawCard());
+                comp1.addCard(deck.drawCard());
+            }
+            else if(place == 1){
+                comp2.addCard(deck.drawCard());
+                comp2.addCard(deck.drawCard());
+            }
+            else if(place == 2){
+                comp3.addCard(deck.drawCard());
+                comp3.addCard(deck.drawCard());
+            }
+            else{
+                play.addCard(deck.drawCard());
+                play.addCard(deck.drawCard());
+            }
+        }
+        else{
+            if(place == 2){
+                comp1.addCard(deck.drawCard());
+                comp1.addCard(deck.drawCard());
+            }
+            else if(place == 3){
+                comp2.addCard(deck.drawCard());
+                comp2.addCard(deck.drawCard());
+            }
+            else if(place == 0){
+                comp3.addCard(deck.drawCard());
+                comp3.addCard(deck.drawCard());
+            }
+            else{
+                play.addCard(deck.drawCard());
+                play.addCard(deck.drawCard());
+            }
         }
     }
 

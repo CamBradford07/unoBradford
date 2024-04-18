@@ -4,8 +4,20 @@ import java.util.ArrayList;
 
 public class DeckOfCards {
     private ArrayList<Card> deck;
+    ImageIcon[] reds;
+    ImageIcon[] blue;
+    ImageIcon[] yellows;
+    ImageIcon[] greens;
+    ImageIcon wild;
+    ImageIcon wildPlus4;
 
     public DeckOfCards(ImageIcon[] reds, ImageIcon[] blue, ImageIcon[] yellows, ImageIcon[] greens, ImageIcon wild, ImageIcon wildPlus4){
+        this.reds = reds;
+        this.blue = blue;
+        this.yellows = yellows;
+        this.greens = greens;
+        this.wild = wild;
+        this.wildPlus4 = wildPlus4;
         deck = new ArrayList<Card>();
         for(int i = 0; i <= 9; i++){
             deck.add(new Card(i, "green", greens[i]));
@@ -76,6 +88,10 @@ public class DeckOfCards {
         }
     }
 public Card drawCard(){
+        if(deck.isEmpty()){
+            reset();
+            shuffle();
+        }
         return deck.remove(0);
 }
 
@@ -83,7 +99,7 @@ public int getSize(){
         return deck.size();
 }
 
-public void reset(ImageIcon[] reds, ImageIcon[] blue, ImageIcon[] yellows, ImageIcon[] greens, ImageIcon wild, ImageIcon wildPlus4){
+public void reset(){
     deck = new ArrayList<Card>();
     for(int i = 0; i <= 9; i++){
         deck.add(new Card(i, "green", greens[i]));
