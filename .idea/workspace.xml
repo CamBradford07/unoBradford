@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="452fefb1-ba23-4dd3-934b-43f6578ff336" name="Changes" comment="got first computer to work">
+    <list default="true" id="452fefb1-ba23-4dd3-934b-43f6578ff336" name="Changes" comment="Reduced code length and fixed errors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DeckOfCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeckOfCards.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Computer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Round.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Round.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712679453273</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="got all computers to take turns">
+      <option name="closed" value="true" />
+      <created>1713457672285</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1713457672285</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,7 +177,9 @@
     <MESSAGE value="Got wild to work" />
     <MESSAGE value="added the action listeners to the rest of the buttons" />
     <MESSAGE value="got first computer to work" />
-    <option name="LAST_COMMIT_MESSAGE" value="got first computer to work" />
+    <MESSAGE value="got all computers to take turns" />
+    <MESSAGE value="Reduced code length and fixed errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reduced code length and fixed errors" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

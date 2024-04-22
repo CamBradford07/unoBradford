@@ -87,4 +87,16 @@ public boolean checkIsWinner(){
         return personalDeck.isEmpty();
 }
 
+    public void plus2(DeckOfCards gameCards){
+        personalDeck.add(gameCards.drawCard());
+        personalDeck.add(gameCards.drawCard());
+    }
+
+    public void plus4(DeckOfCards gameCards){
+        personalDeck.add(gameCards.drawCard());
+        personalDeck.add(gameCards.drawCard());
+        personalDeck.add(gameCards.drawCard());
+        personalDeck.add(gameCards.drawCard());
+    }
+
 }

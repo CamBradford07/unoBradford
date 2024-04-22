@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Round {
@@ -7,7 +9,6 @@ public class Round {
     private String wildColor = "";
     private boolean isWild = false;
     private String winner = "";
-    private long delay = 1000;
 
     public Round(Card card){
         lastCard = card;
@@ -15,18 +16,6 @@ public class Round {
 
     public void setLastCard(Card newLastCard){
         lastCard = newLastCard;
-    }
-
-    public long getDelay() {
-        return delay;
-    }
-
-    public void resetDelay(){
-        delay = 1000;
-    }
-
-    public void increaseDelay(){
-        delay += 1000;
     }
 
     public void setIsWild(boolean tof){
@@ -53,14 +42,6 @@ public class Round {
         direction *= -1;
     }
 
-    public int getNextIndex(){
-        int nextIndex = place + direction;
-        if(nextIndex > 3 || nextIndex < 0){
-            if(direction < 0){nextIndex = 3;}
-            else{nextIndex = 0;}
-        }
-        return nextIndex;
-    }
 
     public void nextPlace(){
         place += direction;
@@ -74,9 +55,6 @@ public class Round {
         }
     }
 
-    public int getPlace(){
-        return place;
-    }
 
     private boolean checkForCard(ArrayList<Card> deck, String color, int number){
         for(Card x: deck){
@@ -156,43 +134,74 @@ public class Round {
         }
     }
 
-    public void plus2(Player play, Computer comp1, Computer comp2, Computer comp3, DeckOfCards deck){
-        if(direction > 0){
-            if(place == 0){
-                comp1.addCard(deck.drawCard());
-                comp1.addCard(deck.drawCard());
-            }
-            else if(place == 1){
-                comp2.addCard(deck.drawCard());
-                comp2.addCard(deck.drawCard());
-            }
-            else if(place == 2){
-                comp3.addCard(deck.drawCard());
-                comp3.addCard(deck.drawCard());
-            }
-            else{
-                play.addCard(deck.drawCard());
-                play.addCard(deck.drawCard());
-            }
-        }
-        else{
-            if(place == 2){
-                comp1.addCard(deck.drawCard());
-                comp1.addCard(deck.drawCard());
-            }
-            else if(place == 3){
-                comp2.addCard(deck.drawCard());
-                comp2.addCard(deck.drawCard());
-            }
-            else if(place == 0){
-                comp3.addCard(deck.drawCard());
-                comp3.addCard(deck.drawCard());
-            }
-            else{
-                play.addCard(deck.drawCard());
-                play.addCard(deck.drawCard());
-            }
-        }
+    public int getDirection() {
+        return direction;
     }
+
+public ArrayList<ImageIcon> runComputers(Player play, Computer comp1, Computer comp2, Computer comp3, DeckOfCards deck){
+        ArrayList<ImageIcon> playedCardIcons = new ArrayList<ImageIcon>();
+        Computer[] comps = {comp1, comp2, comp3};
+        while(place != 0){
+            Card playedCard = comps[place - 1].randomTurn(this,deck);
+            lastCard = playedCard;
+            playedCardIcons.add(playedCard.getIcon());
+            if(lastCard.getNumber() == 12){
+                if(place == 1){
+                    if(direction > 0){comp2.plus4(deck);}
+                    else if(direction < 0){play.plus4(deck);}
+                }
+                else if(place == 2){
+                    if(direction > 0){comp3.plus4(deck);}
+                    else if(direction < 0){comp1.plus4(deck);}
+                }
+                else{
+                    if(direction > 0){play.plus4(deck);}
+                    else if(direction < 0){comp1.plus4(deck);}
+                }
+                nextPlace();
+            }
+            else if(lastCard.getNumber() == 10){
+                if(place == 1){
+                    if(direction > 0){comp2.plus2(deck);}
+                    else if(direction < 0){play.plus2(deck);}
+                }
+                else if(place == 2){
+                    if(direction > 0){comp3.plus2(deck);}
+                    else if(direction < 0){comp1.plus2(deck);}
+                }
+                else{
+                    if(direction > 0){play.plus2(deck);}
+                    else if(direction < 0){comp1.plus2(deck);}
+                }
+            }
+            else if(lastCard.getNumber() == -2){nextPlace();}
+            else if(lastCard.getNumber() == -1){reverse();}
+            nextPlace();
+        }
+        return playedCardIcons;
+}
+
+public void win(Player play, JFrame game, JFrame winFrame, JPanel winpanel, JLabel winnerLabel){
+    setWinner(play.getName());
+    winpanel.setBackground(Color.GREEN);
+    winFrame.setBackground(Color.GREEN);
+    winnerLabel.setText("Winner: " + getWinner());
+    winpanel.add(winnerLabel);
+    winFrame.add(winpanel);
+    game.setVisible(false);
+    winFrame.setVisible(true);
+}
+
+    public void win(Computer comp, JFrame game, JFrame winFrame, JPanel winpanel, JLabel winnerLabel){
+        setWinner(comp.getName());
+        winpanel.setBackground(Color.RED);
+        winFrame.setBackground(Color.RED);
+        winnerLabel.setText("Winner: " + getWinner());
+        winpanel.add(winnerLabel);
+        winFrame.add(winpanel);
+        game.setVisible(false);
+        winFrame.setVisible(true);
+    }
+
 
 }

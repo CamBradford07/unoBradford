@@ -42,4 +42,16 @@ public class Player {
        return deck.remove(index);
     }
 
+    public void plus2(DeckOfCards gameCards){
+        deck.add(gameCards.drawCard());
+        deck.add(gameCards.drawCard());
+    }
+
+    public void plus4(DeckOfCards gameCards){
+        deck.add(gameCards.drawCard());
+        deck.add(gameCards.drawCard());
+        deck.add(gameCards.drawCard());
+        deck.add(gameCards.drawCard());
+    }
+
 }
