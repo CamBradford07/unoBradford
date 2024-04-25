@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="452fefb1-ba23-4dd3-934b-43f6578ff336" name="Changes" comment="Reduced code length and fixed errors">
+    <list default="true" id="452fefb1-ba23-4dd3-934b-43f6578ff336" name="Changes" comment="finalized warnings and errors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Round.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Round.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -161,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713804353346</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="finalized warnings and errors">
+      <option name="closed" value="true" />
+      <created>1714058172931</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1714058172931</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -186,7 +193,8 @@
     <MESSAGE value="got first computer to work" />
     <MESSAGE value="got all computers to take turns" />
     <MESSAGE value="Reduced code length and fixed errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reduced code length and fixed errors" />
+    <MESSAGE value="finalized warnings and errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="finalized warnings and errors" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -166,15 +166,15 @@ public ArrayList<ImageIcon> runComputers(Player play, Computer comp1, Computer c
                 }
                 else{
                     if(direction > 0){play.plus2(deck);}
-                    else if(direction < 0){comp1.plus2(deck);}
+                    else if(direction < 0){comp2.plus2(deck);}
                 }
+                nextPlace();
             }
             else if(lastCard.getNumber() == -2){nextPlace();}
             else if(lastCard.getNumber() == -1){reverse();}
 
             if(comps[place - 1].checkIsWinner()){break;}
             nextPlace();
-
         }
         return playedCardIcons;
 }
