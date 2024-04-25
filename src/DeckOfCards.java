@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 public class DeckOfCards {
@@ -18,7 +17,7 @@ public class DeckOfCards {
         this.greens = greens;
         this.wild = wild;
         this.wildPlus4 = wildPlus4;
-        deck = new ArrayList<Card>();
+        deck = new ArrayList<>();
         for(int i = 0; i <= 9; i++){
             deck.add(new Card(i, "green", greens[i]));
         }
@@ -95,12 +94,8 @@ public Card drawCard(){
         return deck.remove(0);
 }
 
-public int getSize(){
-        return deck.size();
-}
-
 public void reset(){
-    deck = new ArrayList<Card>();
+    deck = new ArrayList<>();
     for(int i = 0; i <= 9; i++){
         deck.add(new Card(i, "green", greens[i]));
     }
@@ -168,8 +163,8 @@ public void reset(){
     }
 }
 public void shuffle(){
-        ArrayList<Card> newDeck = new ArrayList<Card>();
- while(deck.size() > 0){
+        ArrayList<Card> newDeck = new ArrayList<>();
+ while(!deck.isEmpty()){
      newDeck.add(deck.remove((int)(Math.random() * deck.size())));
     }
  deck = newDeck;

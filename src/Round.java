@@ -59,12 +59,7 @@ public class Round {
     private boolean checkForCard(ArrayList<Card> deck, String color, int number){
         for(Card x: deck){
             if(x.getColor().equalsIgnoreCase(color) && x.getNumber() == number){
-                if((!isWild && (x.getColor().equalsIgnoreCase(lastCard.getColor()) || x.getNumber() == lastCard.getNumber() )) || (isWild && (x.getColor().equalsIgnoreCase(wildColor))) || x.getColor().equalsIgnoreCase("wild")) {
-                    return true;
-                }
-                else{
-                    return false;
-                }
+                return (!isWild && (x.getColor().equalsIgnoreCase(lastCard.getColor()) || x.getNumber() == lastCard.getNumber())) || (isWild && (x.getColor().equalsIgnoreCase(wildColor))) || x.getColor().equalsIgnoreCase("wild");
             }
         }
         return false;
@@ -139,7 +134,7 @@ public class Round {
     }
 
 public ArrayList<ImageIcon> runComputers(Player play, Computer comp1, Computer comp2, Computer comp3, DeckOfCards deck){
-        ArrayList<ImageIcon> playedCardIcons = new ArrayList<ImageIcon>();
+        ArrayList<ImageIcon> playedCardIcons = new ArrayList<>();
         Computer[] comps = {comp1, comp2, comp3};
         while(place != 0){
             Card playedCard = comps[place - 1].randomTurn(this,deck);
@@ -176,7 +171,10 @@ public ArrayList<ImageIcon> runComputers(Player play, Computer comp1, Computer c
             }
             else if(lastCard.getNumber() == -2){nextPlace();}
             else if(lastCard.getNumber() == -1){reverse();}
+
+            if(comps[place - 1].checkIsWinner()){break;}
             nextPlace();
+
         }
         return playedCardIcons;
 }

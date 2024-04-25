@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
 public class Computer {
-    private String name;
-    private ArrayList<Card> personalDeck;
+    private final String name;
+    private final ArrayList<Card> personalDeck;
     public Computer(String name){
         this.name = name;
-        personalDeck = new ArrayList<Card>();
+        personalDeck = new ArrayList<>();
     }
 
     public String getName(){
@@ -32,24 +32,24 @@ private Card playCard(String color, int num){
         return personalDeck.remove(findCardIndex(color, num));
 }
 
-public void colorTurn(Round round){
-        boolean[] options = round.checkOptions(personalDeck);
-        String lastCardColor = round.getLastCard().getColor();
-
-}
-
 public Card randomTurn(Round round, DeckOfCards gameDeck) {
     int pick = -1;
     boolean[] options = round.checkOptions(personalDeck);
     boolean isOption = false;
     for(boolean bool: options){
-        if(bool){isOption = true;}
+        if(bool){
+            isOption = true;
+        break;
+        }
     }
     while(!isOption){
         personalDeck.add(gameDeck.drawCard());
         options = round.checkOptions(personalDeck);
         for(boolean bool: options){
-            if(bool){isOption = true;}
+            if(bool){
+                isOption = true;
+            break;
+            }
         }
     }
     while (pick < 0) {

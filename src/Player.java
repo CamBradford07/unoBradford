@@ -1,13 +1,11 @@
-import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Player {
-    private String name;
-    private ArrayList<Card> deck;
+    private final String name;
+    private final ArrayList<Card> deck;
 
     public Player(String name){
-        deck = new ArrayList<Card>();
+        deck = new ArrayList<>();
         this.name = name;
     }
 

@@ -306,6 +306,7 @@ public class Main {
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -356,8 +357,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -408,8 +409,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -460,8 +461,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -512,8 +513,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -564,8 +565,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -616,8 +617,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -668,8 +669,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -720,8 +721,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -772,8 +773,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -825,8 +826,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -878,8 +879,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -933,8 +934,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -985,8 +986,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1037,8 +1038,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1089,8 +1090,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1141,8 +1142,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1193,8 +1194,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1245,8 +1246,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1297,8 +1298,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1349,8 +1350,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1401,8 +1402,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1453,8 +1454,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1506,8 +1507,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1559,8 +1560,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1614,8 +1615,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1666,8 +1667,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1718,8 +1719,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1770,8 +1771,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1822,8 +1823,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1874,8 +1875,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1926,8 +1927,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -1978,8 +1979,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2030,8 +2031,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2082,8 +2083,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2134,8 +2135,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2187,8 +2188,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2240,8 +2241,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2295,8 +2296,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2347,8 +2348,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2399,8 +2400,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2451,8 +2452,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2503,8 +2504,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2555,8 +2556,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2607,8 +2608,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2659,8 +2660,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 
 
@@ -2708,8 +2709,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2760,8 +2761,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2812,8 +2813,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2865,8 +2866,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2915,8 +2916,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -2970,8 +2971,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -3084,8 +3085,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -3135,8 +3136,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -3186,8 +3187,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
@@ -3237,8 +3238,8 @@ public class Main {
                     }, 1000 * i);
                 }
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                playCardCount.setText("Cards: " + play.getCardCount());
 
                 if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                     if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}

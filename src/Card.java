@@ -1,9 +1,9 @@
 import javax.swing.*;
 
 public class Card{
-    private ImageIcon icon;
-    private int number;
-    private String color;
+    private final ImageIcon icon;
+    private final int number;
+    private final String color;
 
     public Card(int number, String color, ImageIcon icon){
         this.icon = icon;
