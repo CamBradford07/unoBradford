@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.TimerTask;
+import java.util.Timer;
 
 public class Round {
     private Card lastCard;
@@ -203,5 +205,29 @@ public void win(Player play, JFrame game, JFrame winFrame, JPanel winpanel, JLab
         winFrame.setVisible(true);
     }
 
+    public void hideButtons(JButton[] buttons){
+        for(JButton but: buttons){
+            but.setVisible(false);
+        }
+    }
+
+    public void seeOptions(JButton[] buttons, Player play){
+        boolean[] options = checkOptions(play.getDeck());
+        for(int i = 0; i < buttons.length; i++){
+            buttons[i].setVisible(options[i]);
+        }
+    }
+
+    public void seeTurns(Timer timer, JLabel label, ArrayList<ImageIcon> cardIcons){
+        for(int i = 1; i <= cardIcons.size(); i++){
+            final int finali = i;
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    label.setIcon(cardIcons.get(finali - 1));
+                }
+            }, 1000 * i);
+        }
+    }
   
 }

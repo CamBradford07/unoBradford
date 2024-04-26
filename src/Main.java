@@ -229,6 +229,7 @@ public class Main {
         comp3CardCount.setText("Cards: " + comp3.getCardCount());
 
         Timer timer = new Timer();
+        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
 
         draw.addActionListener(new ActionListener() {
             @Override
@@ -250,7 +251,6 @@ public class Main {
                 for(Card x: play.getDeck()){
                     playerShowDeck.add(new JLabel(x.getIcon()));
                 }
-                //frame.remove(0);
                 frame2.add(playerShowDeck);
                 frame.setVisible(false);
                 frame2.setVisible(true);
@@ -267,7 +267,6 @@ public class Main {
                 for(Component x: optionPanel.getComponents()){
                     optionPanel.remove(x);
                 }
-                //frame.remove(0);
                 frame2.setVisible(false);
                 optionFrame.setVisible(false);
                 frame.setVisible(true);
@@ -283,26 +282,14 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
@@ -311,16 +298,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -336,26 +318,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -363,16 +332,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -388,26 +352,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -415,16 +366,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -440,26 +386,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -467,16 +400,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -492,26 +420,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -519,16 +434,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -544,26 +454,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -571,16 +468,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -596,26 +488,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -623,16 +502,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -648,26 +522,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -675,16 +536,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -700,26 +556,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -727,16 +570,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -752,26 +590,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -779,16 +604,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -805,26 +625,13 @@ public class Main {
                 round.setIsWild(false);
               round.nextPlace();
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -832,16 +639,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -858,26 +660,13 @@ public class Main {
                 round.setIsWild(false);
                 round.reverse();
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -885,16 +674,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -913,26 +697,13 @@ public class Main {
                 else{comp3.plus2(gameCards);}
                 round.nextPlace();
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -940,16 +711,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -965,26 +731,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -992,16 +745,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1017,26 +765,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1044,16 +779,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1069,26 +799,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1096,16 +813,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1121,26 +833,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1148,16 +847,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1173,26 +867,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1200,16 +881,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1225,26 +901,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1252,16 +915,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1277,26 +935,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1304,16 +949,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1329,26 +969,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1356,16 +983,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1381,26 +1003,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1408,16 +1017,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1433,26 +1037,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1460,16 +1051,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1486,26 +1072,13 @@ public class Main {
                 round.setIsWild(false);
                 round.nextPlace();
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1513,16 +1086,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1539,26 +1107,13 @@ public class Main {
                 round.setIsWild(false);
                 round.reverse();
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1566,16 +1121,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1594,26 +1144,13 @@ public class Main {
                 else{comp3.plus2(gameCards);}
                 round.nextPlace();
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1621,16 +1158,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1646,26 +1178,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1673,16 +1192,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1698,26 +1212,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1725,16 +1226,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1750,26 +1246,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1777,16 +1260,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1802,26 +1280,12 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
-
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                round.hideButtons(allButtons);
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1829,16 +1293,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1854,26 +1313,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1881,16 +1327,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1906,26 +1347,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1933,16 +1361,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1958,26 +1381,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -1985,16 +1395,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2010,26 +1415,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2037,16 +1429,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2062,26 +1449,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2089,16 +1463,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2114,26 +1483,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2141,16 +1497,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2167,26 +1518,13 @@ public class Main {
                 round.setIsWild(false);
                round.nextPlace();
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2194,16 +1532,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2220,26 +1553,13 @@ public class Main {
                 round.setIsWild(false);
                 round.reverse();
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2247,16 +1567,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2275,26 +1590,13 @@ public class Main {
                 else{comp3.plus2(gameCards);}
                 round.nextPlace();
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2302,16 +1604,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2327,26 +1624,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2354,16 +1638,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2379,26 +1658,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2406,16 +1672,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2431,26 +1692,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2458,16 +1706,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2483,26 +1726,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2510,16 +1740,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2535,26 +1760,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2562,16 +1774,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2587,26 +1794,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2614,16 +1808,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2639,26 +1828,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2688,26 +1864,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2715,16 +1878,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2740,26 +1898,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2767,16 +1912,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2792,26 +1932,13 @@ public class Main {
                 label.setIcon(playedCard.getIcon());
                 round.setIsWild(false);
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2819,16 +1946,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2845,26 +1967,13 @@ public class Main {
                 round.setIsWild(false);
                round.nextPlace();
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2872,16 +1981,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2895,26 +1999,13 @@ public class Main {
                 round.setLastCard(playedCard);
                 round.reverse();
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2922,16 +2013,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2950,26 +2036,13 @@ public class Main {
                 else{comp3.plus2(gameCards);}
                 round.nextPlace();
 
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -2977,16 +2050,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -3005,10 +2073,7 @@ public class Main {
                 yellowPick.setVisible(true);
                 greenPick.setVisible(true);
                 bluePick.setVisible(true);
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
                 if(play.getCardCount() == 0){
                     round.setWinner(play.getName());
                     winnerPanel.setBackground(Color.GREEN);
@@ -3038,10 +2103,7 @@ public class Main {
                 if(round.getDirection() > 0){comp1.plus4(gameCards);}
                 else{comp3.plus4(gameCards);}
                 round.nextPlace();
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
                 if(play.getCardCount() == 0){
                     round.setWinner(play.getName());
                     winnerPanel.setBackground(Color.GREEN);
@@ -3064,26 +2126,13 @@ public class Main {
                 yellowPick.setVisible(false);
                 greenPick.setVisible(false);
                 bluePick.setVisible(false);
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -3091,16 +2140,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -3115,26 +2159,13 @@ public class Main {
                 yellowPick.setVisible(false);
                 greenPick.setVisible(false);
                 bluePick.setVisible(false);
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -3142,16 +2173,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -3166,26 +2192,13 @@ public class Main {
                 yellowPick.setVisible(false);
                 greenPick.setVisible(false);
                 bluePick.setVisible(false);
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
@@ -3193,16 +2206,11 @@ public class Main {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -3217,49 +2225,25 @@ public class Main {
                 yellowPick.setVisible(false);
                 greenPick.setVisible(false);
                 bluePick.setVisible(false);
-                JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                for(JButton button: allButtons){
-                    button.setVisible(false);
-                }
+                round.hideButtons(allButtons);
 
-                if(play.getCardCount() == 0){
-                    round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);
-                }
+                if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                for(int i = 1; i <= cardIcons.size(); i++){
-                    final int finali = i;
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            label.setIcon(cardIcons.get(finali - 1));
-                        }
-                    }, 1000 * i);
-                }
+                round.seeTurns(timer, label, cardIcons);
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
-                if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
-                    if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
-                    else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                    else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                }
-
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        if(comp1.checkIsWinner() || comp2.checkIsWinner() || comp3.checkIsWinner()){
                             if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
                             else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else{round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        }
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        
+                        round.seeOptions(allButtons, play);
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -3274,11 +2258,7 @@ public class Main {
         JButton[] blueNums = {blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9};
         JButton[] greenNums = {green0, green1, green2, green3, green4, green5, green6, green7, green8, green9};
 
-        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-        boolean[] options = round.checkOptions(play.getDeck());
-        for(int i = 0; i < allButtons.length; i++){
-            allButtons[i].setVisible(options[i]);
-        }
+        round.seeOptions(allButtons,play);
 
         panel.add(playName);
         panel.add(new JLabel(blankIcon));
