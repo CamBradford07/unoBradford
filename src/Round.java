@@ -173,7 +173,9 @@ public ArrayList<ImageIcon> runComputers(Player play, Computer comp1, Computer c
             else if(lastCard.getNumber() == -2){nextPlace();}
             else if(lastCard.getNumber() == -1){reverse();}
 
+          if(place != 0){
             if(comps[place - 1].checkIsWinner()){break;}
+          }
             nextPlace();
         }
         return playedCardIcons;
@@ -201,5 +203,5 @@ public void win(Player play, JFrame game, JFrame winFrame, JPanel winpanel, JLab
         winFrame.setVisible(true);
     }
 
-
+  
 }
