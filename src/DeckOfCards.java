@@ -93,9 +93,7 @@ public void reset(){
     for(int i = 1; i <= 9; i++){
         deck.add(new Card(i, "green", greens[i]));
     }
-    //skip = -2
-    // reverse = -1
-    //plus 2 = 10
+  
     deck.add(new Card(-2, "green", greens[10]));
     deck.add(new Card(-2, "green", greens[10]));
     deck.add(new Card(-1, "green", greens[11]));
@@ -108,9 +106,7 @@ public void reset(){
     for(int i = 1; i <= 9; i++){
         deck.add(new Card(i, "red", reds[i]));
     }
-    //skip = -2
-    // reverse = -1
-    //plus 2 = 10
+    
     deck.add(new Card(-2, "red", reds[10]));
     deck.add(new Card(-2, "red", reds[10]));
     deck.add(new Card(-1, "red", reds[11]));
@@ -124,9 +120,6 @@ public void reset(){
     for(int i = 1; i <= 9; i++){
         deck.add(new Card(i, "blue", blue[i]));
     }
-    //skip = -2
-    // reverse = -1
-    //plus 2 = 10
     deck.add(new Card(-2, "blue", blue[10]));
     deck.add(new Card(-2, "blue", blue[10]));
     deck.add(new Card(-1, "blue", blue[11]));
@@ -139,9 +132,6 @@ public void reset(){
     for(int i = 1; i <= 9; i++){
         deck.add(new Card(i, "yellow", yellows[i]));
     }
-    //skip = -2
-    // reverse = -1
-    //plus 2 = 10
     deck.add(new Card(-2, "yellow", yellows[10]));
     deck.add(new Card(-2, "yellow", yellows[10]));
     deck.add(new Card(-1, "yellow", yellows[11]));
@@ -153,6 +143,7 @@ public void reset(){
         deck.add(new Card(12, "wild", wildPlus4));
     }
 }
+  
 public void shuffle(){
         ArrayList<Card> newDeck = new ArrayList<>();
  while(!deck.isEmpty()){

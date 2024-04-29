@@ -13,14 +13,11 @@ public class Main {
         frame.setSize(1500,750);
         JFrame frame2 = new JFrame("UNO");
         frame2.setSize(500,500);
-        JFrame optionFrame = new JFrame("Options");
-        optionFrame.setSize(500,500);
         JFrame winnerFrame = new JFrame("Winner");
         winnerFrame.setSize(500, 500);
 
         JPanel playerShowDeck = new JPanel();
         JPanel panel = new JPanel(new GridLayout(12,10));
-        JPanel optionPanel = new JPanel();
         JPanel winnerPanel = new JPanel();
 
         ImageIcon red0Icon = new ImageIcon("Images/red0.png");
@@ -105,8 +102,8 @@ public class Main {
         gameCards.shuffle();
 
         Computer comp1 = new Computer("Seaver");
-        Computer comp2 = new Computer("Alex");
-        Computer comp3 = new Computer("Cam");
+        Computer comp2 = new Computer("Sowka");
+        Computer comp3 = new Computer("Gattone");
 
         Player play = new Player("Player");
 
@@ -211,17 +208,12 @@ public class Main {
         JLabel winnerLabel = new JLabel("");
 
         for(int i = 0; i < 7; i++){
-            play.addCard(gameCards.drawCard());
+          play.addCard(gameCards.drawCard());
+          comp1.addCard(gameCards.drawCard());
+          comp2.addCard(gameCards.drawCard());
+          comp3.addCard(gameCards.drawCard());
         }
-        for(int i = 0; i < 7; i++){
-            comp1.addCard(gameCards.drawCard());
-        }
-        for(int i = 0; i < 7; i++){
-            comp2.addCard(gameCards.drawCard());
-        }
-        for(int i = 0; i < 7; i++){
-            comp3.addCard(gameCards.drawCard());
-        }
+        
 
         playCardCount.setText("Cards: " + play.getCardCount());
         comp1CardCount.setText("Cards: " + comp1.getCardCount());
@@ -264,11 +256,8 @@ public class Main {
                 for(Component x: playerShowDeck.getComponents()){
                     playerShowDeck.remove(x);
                 }
-                for(Component x: optionPanel.getComponents()){
-                    optionPanel.remove(x);
-                }
+              
                 frame2.setVisible(false);
-                optionFrame.setVisible(false);
                 frame.setVisible(true);
             }
         });
@@ -2325,7 +2314,6 @@ public class Main {
         for(JButton button: greenNums){
             panel.add(button);
         }
-
         frame.add(panel);
         frame.setVisible(true);
     }
