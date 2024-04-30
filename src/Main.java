@@ -112,6 +112,9 @@ public class Main {
         JButton showDeck = new JButton("see deck");
         JButton draw = new JButton("Draw card");
         JLabel label = new JLabel();
+        
+        JLabel turnLabel = new JLabel("Your", SwingConstants.RIGHT);
+        JLabel basicLabel = new JLabel(" Turn", SwingConstants.LEFT);
 
         JButton returnToGame = new JButton("return to game");
 
@@ -272,10 +275,10 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
                 
@@ -292,6 +295,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -308,24 +312,27 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                            if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        
+                        if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+
                         round.seeOptions(allButtons, play);
+                        turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -342,24 +349,27 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                            if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        
+                        if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+
                         round.seeOptions(allButtons, play);
+                        turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -376,24 +386,27 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                            if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
-                            else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
-                        
+                        if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+
                         round.seeOptions(allButtons, play);
+                        turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -410,13 +423,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -428,6 +443,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -444,13 +460,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -462,6 +480,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -478,13 +497,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -496,6 +517,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -512,13 +534,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -530,6 +554,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -546,13 +571,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -564,6 +591,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -580,13 +608,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -598,6 +628,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -615,13 +646,15 @@ public class Main {
               round.nextPlace();
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -633,6 +666,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -650,13 +684,15 @@ public class Main {
                 round.reverse();
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -668,6 +704,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -687,13 +724,15 @@ public class Main {
                 round.nextPlace();
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -705,6 +744,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -721,13 +761,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -739,6 +781,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -755,13 +798,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -773,6 +818,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -789,13 +835,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -807,6 +855,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -823,13 +872,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -841,6 +892,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -857,13 +909,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -875,6 +929,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -891,13 +946,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -909,6 +966,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -925,13 +983,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -943,6 +1003,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -959,13 +1020,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -977,6 +1040,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -993,13 +1057,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1011,6 +1077,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1027,13 +1094,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1045,6 +1114,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1062,13 +1132,15 @@ public class Main {
                 round.nextPlace();
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1080,6 +1152,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1097,13 +1170,15 @@ public class Main {
                 round.reverse();
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1115,6 +1190,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1134,13 +1210,15 @@ public class Main {
                 round.nextPlace();
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1152,6 +1230,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1168,13 +1247,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1186,6 +1267,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1202,13 +1284,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1220,6 +1304,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1236,13 +1321,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1254,6 +1341,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1273,9 +1361,12 @@ public class Main {
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1287,6 +1378,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1303,13 +1395,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1321,6 +1415,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1337,13 +1432,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1355,6 +1452,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1371,13 +1469,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1389,6 +1489,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1405,13 +1506,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1423,6 +1526,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1439,13 +1543,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1457,6 +1563,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1473,13 +1580,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1491,6 +1600,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1508,13 +1618,15 @@ public class Main {
                round.nextPlace();
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1526,6 +1638,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1543,13 +1656,15 @@ public class Main {
                 round.reverse();
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1561,6 +1676,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1580,13 +1696,15 @@ public class Main {
                 round.nextPlace();
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1598,6 +1716,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1614,13 +1733,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1632,6 +1753,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1648,13 +1770,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1666,6 +1790,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1682,13 +1807,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1700,6 +1827,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1716,13 +1844,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1734,6 +1864,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1750,13 +1881,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1768,6 +1901,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1784,13 +1918,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1802,6 +1938,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1818,26 +1955,27 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
-
-                
 
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for(int i = 0; i < allButtons.length; i++){
-                            allButtons[i].setVisible(options[i]);
-                        }
+                        if(comp1.checkIsWinner()){round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        else if(comp2.checkIsWinner()){round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel);}
+                        else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
+
+                        round.seeOptions(allButtons, play);
+                        turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1854,13 +1992,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1872,6 +2012,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1888,13 +2029,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1906,6 +2049,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1922,13 +2066,15 @@ public class Main {
                 round.setIsWild(false);
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1940,6 +2086,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1957,13 +2104,15 @@ public class Main {
                round.nextPlace();
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -1975,6 +2124,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -1989,13 +2139,15 @@ public class Main {
                 round.reverse();
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -2007,6 +2159,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2026,13 +2179,15 @@ public class Main {
                 round.nextPlace();
 
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -2044,6 +2199,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2116,13 +2272,15 @@ public class Main {
                 greenPick.setVisible(false);
                 bluePick.setVisible(false);
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -2134,6 +2292,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2149,13 +2308,15 @@ public class Main {
                 greenPick.setVisible(false);
                 bluePick.setVisible(false);
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -2167,6 +2328,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2182,13 +2344,15 @@ public class Main {
                 greenPick.setVisible(false);
                 bluePick.setVisible(false);
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -2200,6 +2364,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2215,13 +2380,15 @@ public class Main {
                 greenPick.setVisible(false);
                 bluePick.setVisible(false);
                 round.hideButtons(allButtons);
-
                 if(play.getCardCount() == 0){round.win(play, frame, winnerFrame, winnerPanel, winnerLabel);}
                 round.nextPlace();
 
+                turnLabel.setText("Computer's");
                 ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
                 round.seeTurns(timer, label, cardIcons);
+                
                 comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                comp2CardCount.setText("Cards: " + comp2.getCardCount());
                 comp3CardCount.setText("Cards: " + comp3.getCardCount());
                 playCardCount.setText("Cards: " + play.getCardCount());
 
@@ -2233,6 +2400,7 @@ public class Main {
                             else if(comp3.checkIsWinner()){round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel);}
                         
                         round.seeOptions(allButtons, play);
+                            turnLabel.setText("Your");
                     }
                 }, (cardIcons.size() + 1) * 1000);
 
@@ -2253,8 +2421,8 @@ public class Main {
         panel.add(new JLabel(blankIcon));
         panel.add(new JLabel(blankIcon));
         panel.add(comp1Name);
-        panel.add(new JLabel(blankIcon));
-        panel.add(new JLabel(blankIcon));
+        panel.add(turnLabel);
+        panel.add(basicLabel);
         panel.add(comp2Name);
         panel.add(new JLabel(blankIcon));
         panel.add(new JLabel(blankIcon));
@@ -2317,4 +2485,5 @@ public class Main {
         frame.add(panel);
         frame.setVisible(true);
     }
+
 }
