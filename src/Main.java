@@ -10,11 +10,11 @@ public class Main {
     public static void main(String[] args) {
 
         JFrame frame = new JFrame("UNO");
-        frame.setSize(1500,750);
+        frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,Toolkit.getDefaultToolkit().getScreenSize().height);
         JFrame frame2 = new JFrame("UNO");
-        frame2.setSize(500,500);
+        frame2.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,Toolkit.getDefaultToolkit().getScreenSize().height);
         JFrame winnerFrame = new JFrame("Winner");
-        winnerFrame.setSize(500, 500);
+        winnerFrame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,Toolkit.getDefaultToolkit().getScreenSize().height);
 
         JPanel playerShowDeck = new JPanel();
         JPanel panel = new JPanel(new GridLayout(12,10));
@@ -255,11 +255,11 @@ public class Main {
         returnToGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.setSize(1500,750);
+                frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width,Toolkit.getDefaultToolkit().getScreenSize().height);
                 for(Component x: playerShowDeck.getComponents()){
                     playerShowDeck.remove(x);
                 }
-              
+
                 frame2.setVisible(false);
                 frame.setVisible(true);
             }

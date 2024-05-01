@@ -191,6 +191,13 @@ public void win(Player play, JFrame game, JFrame winFrame, JPanel winpanel, JLab
     winFrame.add(winpanel);
     game.setVisible(false);
     winFrame.setVisible(true);
+    Timer timer = new Timer();
+    timer.schedule(new TimerTask() {
+        @Override
+        public void run() {
+            System.exit(0);
+        }
+    }, 5000);
 }
 
     public void win(Computer comp, JFrame game, JFrame winFrame, JPanel winpanel, JLabel winnerLabel){
@@ -202,6 +209,13 @@ public void win(Player play, JFrame game, JFrame winFrame, JPanel winpanel, JLab
         winFrame.add(winpanel);
         game.setVisible(false);
         winFrame.setVisible(true);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        }, 5000);
     }
 
     public void hideButtons(JButton[] buttons){
