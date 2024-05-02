@@ -182,40 +182,30 @@ public ArrayList<ImageIcon> runComputers(Player play, Computer comp1, Computer c
         return playedCardIcons;
 }
 
-public void win(Player play, JFrame game, JFrame winFrame, JPanel winpanel, JLabel winnerLabel){
+public void win(Player play, JFrame game, JFrame winFrame, JPanel winpanel, JLabel winnerLabel, JButton cont, JButton quit){
     setWinner(play.getName());
     winpanel.setBackground(Color.GREEN);
     winFrame.setBackground(Color.GREEN);
     winnerLabel.setText("Winner: " + getWinner());
     winpanel.add(winnerLabel);
+    winpanel.add(cont);
+    winpanel.add(quit);
     winFrame.add(winpanel);
     game.setVisible(false);
     winFrame.setVisible(true);
-    Timer timer = new Timer();
-    timer.schedule(new TimerTask() {
-        @Override
-        public void run() {
-            System.exit(0);
-        }
-    }, 5000);
 }
 
-    public void win(Computer comp, JFrame game, JFrame winFrame, JPanel winpanel, JLabel winnerLabel){
+    public void win(Computer comp, JFrame game, JFrame winFrame, JPanel winpanel, JLabel winnerLabel, JButton cont, JButton quit){
         setWinner(comp.getName());
         winpanel.setBackground(Color.RED);
         winFrame.setBackground(Color.RED);
         winnerLabel.setText("Winner: " + getWinner());
         winpanel.add(winnerLabel);
+        winpanel.add(cont);
+        winpanel.add(quit);
         winFrame.add(winpanel);
         game.setVisible(false);
         winFrame.setVisible(true);
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                System.exit(0);
-            }
-        }, 5000);
     }
 
     public void hideButtons(JButton[] buttons){
@@ -242,5 +232,6 @@ public void win(Player play, JFrame game, JFrame winFrame, JPanel winpanel, JLab
             }, 1000 * i);
         }
     }
-  
+
+
 }

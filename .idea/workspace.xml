@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="452fefb1-ba23-4dd3-934b-43f6578ff336" name="Changes" comment="added turn labels">
+    <list default="true" id="452fefb1-ba23-4dd3-934b-43f6578ff336" name="Changes" comment="made program automatically close">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Round.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Round.java" afterDir="false" />
@@ -215,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714493074312</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="made program automatically close">
+      <option name="closed" value="true" />
+      <created>1714580562315</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1714580562315</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -243,7 +251,8 @@
     <MESSAGE value="finalized warnings and errors" />
     <MESSAGE value="shortened code" />
     <MESSAGE value="added turn labels" />
-    <option name="LAST_COMMIT_MESSAGE" value="added turn labels" />
+    <MESSAGE value="made program automatically close" />
+    <option name="LAST_COMMIT_MESSAGE" value="made program automatically close" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
