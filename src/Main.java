@@ -11,7 +11,10 @@ public class Main {
         int[] continues = {1};
 
         while (true) {
-            System.out.print("");
+            try {
+                Thread.sleep(300);
+            }
+            catch(Exception e){}
             if(continues[0] == 1){
                 continues[0] = 0;
                 JFrame frame = new JFrame("UNO");
