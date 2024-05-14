@@ -114,7 +114,7 @@ public class Main {
                 Computer comp2 = new Computer("Sowka");
                 Computer comp3 = new Computer("Gattone");
 
-                Player play = new Player("Player");
+                Player play = new Player("YOU");
 
                 Round round = new Round(new Card(0, "blank", blankIcon));
 
