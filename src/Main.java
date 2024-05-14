@@ -11,10 +11,11 @@ public class Main {
         int[] continues = {1};
 
         while (true) {
-            try {
+            try{
                 Thread.sleep(300);
             }
             catch(Exception e){}
+
             if(continues[0] == 1){
                 continues[0] = 0;
                 JFrame frame = new JFrame("UNO");
@@ -241,10 +242,8 @@ public class Main {
                     public void actionPerformed(ActionEvent e) {
                         play.addCard(gameCards.drawCard());
                         playCardCount.setText("Cards: " + play.getCardCount());
-                        JButton[] allButtons = {redSkip, redReverse, red0, red1, red2, red3, red4, red5, red6, red7, red8, red9, redPlus2, yellowSkip, yellowReverse, yellow0, yellow1, yellow2, yellow3, yellow4, yellow5, yellow6, yellow7, yellow8, yellow9, yellowPlus2, greenSkip, greenReverse, green0, green1, green2, green3, green4, green5, green6, green7, green8, green9, greenPlus2, blueSkip, blueReverse, blue0, blue1, blue2, blue3, blue4, blue5, blue6, blue7, blue8, blue9, bluePlus2, wild, wildPlus4};
-                        boolean[] options = round.checkOptions(play.getDeck());
-                        for (int i = 0; i < allButtons.length; i++) {
-                            allButtons[i].setVisible(options[i]);
+                        if(!turnLabel.getText().equalsIgnoreCase("computer's")) {
+                            round.seeOptions(allButtons, play);
                         }
                     }
                 });
