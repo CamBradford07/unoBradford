@@ -287,33 +287,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -330,33 +331,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -373,33 +375,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -416,33 +419,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -459,33 +463,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -502,33 +507,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -545,33 +551,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -588,33 +595,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -631,33 +639,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -674,33 +683,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -718,33 +728,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -762,33 +773,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -811,33 +823,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -854,33 +867,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -897,33 +911,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -940,33 +955,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -983,33 +999,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1026,33 +1043,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1069,33 +1087,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1112,33 +1131,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1155,33 +1175,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1198,33 +1219,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1241,33 +1263,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1285,33 +1308,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1329,33 +1353,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1378,33 +1403,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1421,33 +1447,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1464,33 +1491,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1507,33 +1535,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1550,33 +1579,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1593,33 +1623,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1636,33 +1667,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1679,33 +1711,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1722,33 +1755,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1765,33 +1799,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1808,33 +1843,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1852,33 +1888,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1896,33 +1933,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1945,33 +1983,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -1988,33 +2027,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2031,33 +2071,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2074,33 +2115,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2117,33 +2159,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2160,33 +2203,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2203,33 +2247,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2246,33 +2291,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2289,33 +2335,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2332,33 +2379,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2375,33 +2423,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2419,33 +2468,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2460,33 +2510,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2509,33 +2560,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2611,33 +2663,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2653,33 +2706,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2695,33 +2749,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
@@ -2737,33 +2792,34 @@ public class Main {
                         if (play.getCardCount() == 0) {
                             round.win(play, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
                         }
-                        round.nextPlace();
+                        else {
+                            round.nextPlace();
 
-                        turnLabel.setText("Computer's");
-                        ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
-                        round.seeTurns(timer, label, cardIcons);
+                            turnLabel.setText("Computer's");
+                            ArrayList<ImageIcon> cardIcons = round.runComputers(play, comp1, comp2, comp3, gameCards);
+                            round.seeTurns(timer, label, cardIcons);
 
-                        comp1CardCount.setText("Cards: " + comp1.getCardCount());
-                        comp2CardCount.setText("Cards: " + comp2.getCardCount());
-                        comp3CardCount.setText("Cards: " + comp3.getCardCount());
-                        playCardCount.setText("Cards: " + play.getCardCount());
+                            comp1CardCount.setText("Cards: " + comp1.getCardCount());
+                            comp2CardCount.setText("Cards: " + comp2.getCardCount());
+                            comp3CardCount.setText("Cards: " + comp3.getCardCount());
+                            playCardCount.setText("Cards: " + play.getCardCount());
 
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (comp1.checkIsWinner()) {
-                                    round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp2.checkIsWinner()) {
-                                    round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
-                                } else if (comp3.checkIsWinner()) {
-                                    round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    if (comp1.checkIsWinner()) {
+                                        round.win(comp1, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp2.checkIsWinner()) {
+                                        round.win(comp2, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    } else if (comp3.checkIsWinner()) {
+                                        round.win(comp3, frame, winnerFrame, winnerPanel, winnerLabel, playAgain, quit);
+                                    }
+
+                                    round.seeOptions(allButtons, play);
+                                    turnLabel.setText("Your");
                                 }
-
-                                round.seeOptions(allButtons, play);
-                                turnLabel.setText("Your");
-                            }
-                        }, (cardIcons.size() + 1) * 1000);
-
+                            }, (cardIcons.size() + 1) * 1000);
+                        }
                     }
                 });
 
